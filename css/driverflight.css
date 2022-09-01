@@ -1,0 +1,485 @@
+@import url('../fonts/GoogleSans/stylesheet.css');
+@import url('../fonts/Roboto/stylesheet.css');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Google Sans;
+}
+
+body {
+	background-color: #FAFAFA;
+}
+
+button {
+	padding: 0px;
+	margin: 0;
+	font-size: 15px;
+	cursor: pointer;
+	border: none;
+}
+
+.content {
+	position: absolute;
+	min-height: 100%;
+	width: 100%;
+}
+
+.flexContent {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+	width: 100%;
+}
+
+.textButton {
+	width: fit-content;
+	padding: 15px;
+	display: flex;
+	justify-content: center;
+}
+
+.textButton p {
+	font-weight: 500;
+	padding: 0 5px;
+}
+
+.buttonWrapper {
+	display: flex;
+	width: 100%;
+	padding: 5px 0 5px 0;
+
+}
+
+.buttonContained {
+	flex-grow: 1;
+	width: 50%;
+	margin: 3px;
+	background-color: black;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.15);
+  	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.buttonContained:hover {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.buttonContained.white {
+	padding-left: 7px;
+	background-color: white;
+	font-weight: 500;
+	width: fit-content;
+	margin: 15px 0;
+    padding: 10px 15px;
+}
+
+
+
+.buttonContained.left {
+	margin-left: 0px;
+}
+
+.buttonContained.right {
+	margin-right: 0px;
+}
+
+.buttonContained p {
+	font-size: 16px;
+	padding-left: 7px;
+	color: white;
+	font-weight: 500;
+	user-select: none;
+}
+
+.buttonContained.white p {
+	color: #3071ff;
+	font-weight: 700;
+	font-size: 25px;
+}
+
+
+#stops div {
+	color:  white;
+}
+
+.cardWrapper {
+	padding: 0 15px 25px 15px;
+}
+
+.cardWrapper#info {
+	flex-basis: 150px;
+}
+
+.cardWrapper#stops {
+	flex-basis: 300px;
+	flex-grow: 1;
+	flex-shrink: 0;
+	position: relative;
+}
+
+.cardWrapper#trips {
+	flex-basis: 150px;
+}
+
+.card {
+	border-radius: 15px;
+	height: 100%;
+	box-shadow: 4px 2px 51px -14px rgba(0,0,0,0.2);
+	background-color: white;
+	padding: 15px 20px;
+
+}
+
+.cardWrapper#stops .card {
+	background: #3071ff;
+	background: linear-gradient(192deg,#3071ff 0%, #0d83fe 80%);
+	padding-left: 45px;
+	padding-top: 25px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	position: relative;
+}
+
+.cardWrapper#stops .card::-webkit-scrollbar {
+    display: none;
+}
+
+.cardText {
+	font-size: 16px;
+	line-height: 22px;
+}
+
+.cardNextStopLabel {
+
+}
+
+::marker {
+	color: rgba(255, 255, 255, 0.7);
+}
+
+#current::marker {
+	color: white;
+}
+
+ul {
+/*	list-style-position: inside;*/
+	position: absolute;
+}
+
+h2 {
+	color: rgba(255, 255, 255, 0.7);
+	font-weight: 500;
+	margin-bottom: 6px;
+	margin-top: 10px;
+}
+
+h1 {
+	margin-bottom: 6px;
+}
+
+h3 {
+	margin-top: 5px;
+}
+
+
+.lastSold {
+	color: #757575;
+}
+
+.nfc {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0px;
+	left: 0px;
+	z-index: 1000;
+	background-color: green;
+	display: none;
+}
+
+.nfcerror {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0px;
+	left: 0px;
+	z-index: 1000;
+	background-color: red;
+	display: none;
+}
+
+.cardBlockBg {
+	position: absolute;
+	height: 100%;
+	width: 100vw;
+	top: 0px;
+	left: 0px;
+	z-index: 1000;
+	background: rgba(0, 0, 0, 0.92);
+	display: none;
+	animation: bg 0.2s ease-in-out;
+}
+
+.cardBlockContent {
+	padding: 0 10px;
+}
+
+/*.cardBlock {
+	position: absolute;
+	display: inherit;
+	top: calc(  0px - ( ((100vw - 20px) / 1.58) + 20px ) );
+	z-index: 1100;
+	background: linear-gradient(45deg, rgb(255, 107, 107), 
+		                                 rgb(164, 107, 255));
+	border-radius: 15px;
+	width: calc(100vw - 20px);
+	height:calc((100vw - 20px) / 1.58);
+	display: none;
+}*/
+
+.cardBlock {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1100;
+	border: 4px dashed white;
+	border-radius: 25px;
+	width: calc(100vw - 20px);
+	height:calc((100vw - 20px) / 1.58);
+	text-align: center;
+	top: calc(  0px - ( ((100vw - 20px) / 1.58) + 20px ) );
+	animation: emptyCard 0.8s;
+	animation-timing-function: ease-out;
+	animation-timing-function: cubic-bezier(.16,.64,.2,.97);
+}
+
+.cardBlockBg.active .cardBlock {
+	top: 30px;
+}
+
+@keyframes emptyCard {
+	0% { top: calc(  0px - ( ((100vw - 20px) / 1.58) + 20px ) );
+}   
+100% { top: 30px;
+}
+}
+
+.goodCardBlock {
+	position: absolute;
+	padding: 25px;
+	flex-direction: column;
+	display: none;
+	z-index: 1200;
+	align-items: flex-start;
+	justify-content: end;
+	top: 30px;
+	width: calc(100vw - 20px);
+	height:calc((100vw - 20px) / 1.58);
+	border-radius: 15px;
+	box-shadow: 1px 3px 137px 115px rgba(0,0,0,0.41);
+	background: linear-gradient(71deg, #00c645, #2ad264, #2bd2b6);
+  background-size: 600% 600%;
+	animation: eye 0.2s, redbg 7s ease infinite;
+}
+
+.goodCardBlock.active {
+	display: flex;
+}
+
+.badCardBlock {
+	position: absolute;
+	padding: 25px;
+	display: none;
+	flex-direction: column;
+	z-index: 1200;
+	align-items: center;
+	justify-content: center;
+	top: 30px;
+	width: calc(100vw - 20px);
+	height:calc((100vw - 20px) / 1.58);
+	border-radius: 15px;
+	box-shadow: 1px 3px 137px 115px rgba(0,0,0,0.41);
+	background: linear-gradient(71deg, #ff0000, #f07878, #df442b);
+  background-size: 600% 600%;
+	animation: eye 0.2s, redbg 7s ease infinite;
+}
+
+.badCardBlock.active {
+	display: flex;
+	
+}
+
+.active {
+	display: block;
+}
+
+
+@keyframes eye {
+	0% {  opacity: 0;
+		-webkit-box-shadow: 1px 3px 137px 115px rgba(0,0,0,0);
+	}   
+	100% {  opacity: 1;
+		-webkit-box-shadow: 1px 3px 137px 115px rgba(0,0,0,0.41);
+	}
+}
+
+
+@keyframes redbg {
+    0%{background-position:69% 0%}
+    50%{background-position:32% 100%}
+    100%{background-position:69% 0%}
+}
+
+
+
+@keyframes bg {
+	0% { background: rgba(0, 0, 0, 0.0);
+	}   
+	100% { background: rgba(0, 0, 0, 0.92);
+	}
+}
+
+@keyframes fade-out {
+	0% { opacity: 1;
+		display: flex;
+	}   
+	100% { opacity: 0;
+		display: none;
+	}
+}
+
+
+@media only screen and (max-width: 600px) {
+	.centred-form1 {
+		min-width: 100vw;
+		padding-left: 8px;
+		padding-right: 8px;
+		position: relative;
+	}
+
+	.centred-form2 {
+		min-width: 100%;
+		max-width: 100%;
+		padding-right: 20px;
+		padding-left: 20px;
+	}
+
+	.centred-form {
+		min-height: 0px;
+	}
+/*  .centred-form::before,
+  .centred-form::after {
+	min-height: 60px;
+  }*/
+}
+
+/*@keyframes eye {
+    0% { top: calc(  0px - ( ((100vw - 20px) / 1.58) + 20px ) );
+         -webkit-box-shadow: 1px 3px 137px 115px rgba(0,0,0,0);
+     }   
+    100% { top: 20px;
+           -webkit-box-shadow: 1px 3px 137px 115px rgba(0,0,0,0.41);
+     }
+   }
+*/
+
+.nfcIcon {
+	z-index: 2000;
+	stroke: white;
+	fill: white;
+	margin: 20px;
+	display: inherit;
+}
+
+.busIcon {
+	z-index: 2000;
+	fill: white;
+	display: inherit;
+}
+
+.nfcReadyMessage {
+	position: absolute;
+	flex-direction: column;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	bottom: 50px;
+	z-index: 1100;
+
+	width: 100vw;
+	height: 300px;
+}
+
+.cardBlockBg p {
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.goodCardBlock p, .badCardBlock p {
+	display: inherit;
+	color: white;
+	font-weight: 900;
+	font-size: 26px;
+}
+
+.ready {
+	font-weight: bold;
+	max-width: 200px;
+}
+
+
+
+.backBlock {
+	position: absolute;
+	bottom: 20px;
+	margin: auto;
+	width: 100vw;
+	height: 40px;
+	z-index: 3000;
+	display: flex;
+	justify-content: center;
+}
+
+.backBlockBorder {
+	width: auto;
+	padding: 5px 10px;
+	padding-right: 12px;
+	border-radius: 20px;
+	border: 1px solid white;
+}
+
+
+.backIcon {
+	background-image: url(../media/outline_close_white_24dp.png);
+	width: 24px;
+	height: 24px;
+	float: left;
+	
+/*	transform: rotate(90deg);*/
+}
+
+.backBlock p {
+	user-select: none;
+}
+
+.backBlock a {
+	padding-top: 10px;
+	vertical-align: bottom;
+	line-height: 24px;
+	color: white;
+	font-size: 16px;
+	padding-left: 3px;
+	font-family: 'Google Sans';
+	font-weight: 400;
+	user-select: none;
+}
